@@ -1,7 +1,22 @@
-import React from "react";
+// PropertyCard.jsx
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
 
 function PropertyCard({ property }) {
   const safeId = property.name.toLowerCase().replace(/[^a-z0-9]/g, "-");
+  const [showModal, setShowModal] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const date = e.target.date.value;
+
+    const mailtoLink = `mailto:info@krysto.com?subject=Viewing Request for ${property.name}` +
+      `&body=Name: ${name}%0D%0AEmail: ${email}%0D%0APreferred Viewing Date: ${date}`;
+
+    window.location.href = mailtoLink;
+  };
 
   return (
     <div className="card mb-4 shadow-sm">
@@ -18,7 +33,6 @@ function PropertyCard({ property }) {
             </div>
           ))}
         </div>
-
         {property.images.length > 1 && (
           <>
             <button className="carousel-control-prev" type="button" data-bs-target={`#carousel-${safeId}`} data-bs-slide="prev">
@@ -39,10 +53,9 @@ function PropertyCard({ property }) {
         <p>
           <strong>Status:</strong> {property.available ? "For Rent" : "Not Available"}
           {property.available && property.availableDate && (
-            <> ( Available: {property.availableDate} )</>
+            <> (Available: {property.availableDate})</>
           )}
         </p>
-
         <p>
           <strong>Address:</strong> {property.fullAddress} (
           <a href={property.address} target="_blank" rel="noreferrer">Map</a>)
@@ -53,9 +66,40 @@ function PropertyCard({ property }) {
             Your browser does not support the video tag.
           </video>
         </div>
-        <a href={property.zillowLink} className="btn btn-primary" target="_blank" rel="noreferrer">
+        <a href={property.zillowLink} className="btn btn-primary me-2" target="_blank" rel="noreferrer">
           View on Zillow
         </a>
+        {property.available && (
+          <>
+            <Button variant="outline-success" onClick={() => setShowModal(true)}>
+              Request for Viewing
+            </Button>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Schedule a Viewing for {property.name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Your Name</Form.Label>
+                    <Form.Control type="text" name="name" required />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control type="email" name="email" required />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Preferred Viewing Date</Form.Label>
+                    <Form.Control type="date" name="date" required />
+                  </Form.Group>
+                  <Button variant="success" type="submit">
+                    Submit Request
+                  </Button>
+                </Form>
+              </Modal.Body>
+            </Modal>
+          </>
+        )}
       </div>
     </div>
   );
