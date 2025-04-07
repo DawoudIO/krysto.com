@@ -1,0 +1,32 @@
+{
+  "properties": [
+    {
+      "name": "Samammish Jacob's Greek Condo",
+      "fullAddress": "4331 Issaquah Pine Lake Road SE #1202, Sammamish, WA 98075",
+      "address": "https://maps.app.goo.gl/5nYUiCme5CZWCxw9A",
+      "description": "Beautiful 3-bedroom lakefront property with modern amenities.",
+      "images": [
+        "images/sammamish/condo.jpg",
+        "images/sammamish/living.jpg",
+        "images/sammamish/floorplan.jpg"
+      ],
+      "video": "/videos/lake-house.mp4",
+      "available": false,
+      "availableDate": "5/7/2025",
+      "zillowLink": "https://www.zillow.com/homedetails/4331-Issaquah-Pine-Lake-Rd-SE-UNIT-1202-Sammamish-WA-98075/63087198_zpid/?view=public"
+    },
+    {
+      "name": "Bothell House",
+      "fullAddress": "128 196th Pl SW, Bothell, WA 98012",
+      "address": "https://maps.app.goo.gl/3Kr8EjkoRqe8Vxb37",
+      "description": "Cozy cabin retreat in the mountains, perfect for weekend getaways.",
+      "images": [
+        "images/bothell/front.png",
+        "images/bothell/kitchen.png"
+      ],
+      "video": "/videos/mountain-cabin.mp4",
+      "available": false,
+      "zillowLink": "https://www.zillow.com/homedetails/128-196th-Pl-SW-Bothell-WA-98012/81370564_zpid/?view=public"
+    }
+  ]
+}
